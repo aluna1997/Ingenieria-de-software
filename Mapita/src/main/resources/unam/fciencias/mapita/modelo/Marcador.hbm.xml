@@ -1,24 +1,23 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 5/02/2019 03:58:19 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="unam.fciencias.mapita.modelo.Marcador" table="marcador" schema="public" optimistic-lock="version">
-        <id name="idmarcador" type="int">
-            <column name="idmarcador" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="usuario" class="unam.fciencias.mapita.modelo.Usuario" fetch="select">
-            <column name="idusuario" not-null="true" />
-        </many-to-one>
-        <property name="descripcion" type="string">
-            <column name="descripcion" not-null="true" />
-        </property>
-        <property name="longitud" type="double">
-            <column name="longitud" precision="17" scale="17" not-null="true" />
-        </property>
-        <property name="latutu" type="double">
-            <column name="latutu" precision="17" scale="17" not-null="true" />
-        </property>
-    </class>
+  <class name="unam.fciencias.mapita.modelo.Marcador" optimistic-lock="version" schema="public" table="marcador">
+    <id name="idmarcador" type="int">
+      <column name="idmarcador"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="unam.fciencias.mapita.modelo.Usuario" fetch="select" name="usuario">
+      <column name="idusuario" not-null="true"/>
+    </many-to-one>
+    <property name="descripcion" type="string">
+      <column name="descripcion" not-null="true"/>
+    </property>
+    <property name="longitud" type="double">
+      <column name="longitud" not-null="true" precision="17" scale="17"/>
+    </property>
+    <property name="latutu" type="double">
+      <column name="latutu" not-null="true" precision="17" scale="17"/>
+    </property>
+  </class>
 </hibernate-mapping>

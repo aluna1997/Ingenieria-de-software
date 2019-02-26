@@ -17,103 +17,55 @@ import org.hibernate.Transaction;
  * @author default
  */
 public class MarcadorDAO extends AbstractDAO<Marcador>{
-    protected SessionFactory sessionFactory;
-    
-    protected MarcadorDAO(){
-        this.sessionFactory = HibernateUtil.getSessionFactory();
-    }
-    
-    protected void save(Marcador obj){
-        Session session = this.sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            session.save(obj);
-            tx.commit();
-       }catch(HibernateException e){
-          if(tx != null){
-              tx.rollback();
-          }
-          e.printStackTrace();
-       }finally{
-          session.close();
-        }
-    }
-    
-    protected void update(Marcador obj){
-        Session session = this.sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            session.update(obj);
-            tx.commit();
-       }catch(HibernateException e){
-          if(tx != null){
-              tx.rollback();
-          }
-          e.printStackTrace();
-       }finally{
-          session.close();
-        }
-        
+    /**
+     * 
+     */
+    public MarcadorDAO(){
+        super();
     }
     
     
-    protected void delete(Marcador obj){
-        Session session = this.sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            session.delete(obj);
-            tx.commit();
-       }catch(HibernateException e){
-          if(tx != null){
-              tx.rollback();
-          }
-          e.printStackTrace();
-       }finally{
-          session.close();
-        }
+    /**
+     * 
+     * @param marcador 
+     */
+    @Override
+    public void save(Marcador marcador){
+        super.save(marcador);
     }
     
-    protected Marcador find(Class clazz, int id){
-        Marcador obj = null;
-        Session session = this.sessionFactory.getCurrentSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            obj = (Marcador)session.get(clazz, id);
-            tx.commit();
-        }catch(HibernateException e){
-            if(tx != null){
-                tx.rollback();
-            }     
-        }finally{
-            session.close();
-        }
-        return obj;
+    /**
+     * 
+     * @param marcador 
+     */
+    @Override
+    public void update(Marcador marcador){
+        super.save(marcador);
     }
     
-    
-    protected List<Marcador> findAll(Class clazz){
-        List<Marcador> obj = null;
-        Session session = this.sessionFactory.getCurrentSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            String hql = "From" + clazz;
-            Query query = session.createQuery(hql);
-            obj = (List<Marcador>)query.list();
-            tx.commit();
-        }catch(HibernateException e){
-            if(tx != null){
-                tx.rollback();
-            }     
-        }finally{
-            session.close();
-        }
-        return obj;
+    /**
+     * 
+     * @param marcador 
+     */
+    @Override
+    public void delete(Marcador marcador){
+        super.delete(marcador);
+    }
+       
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    public Marcador find(int id){
+        return super.find(Marcador.class, id);
     }
     
-    
+    /**
+     * 
+     * @return 
+     */
+    public List<Marcador> findAll(){
+        return super.findAll(Marcador.class);
+    }
 }

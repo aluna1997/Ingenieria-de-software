@@ -17,101 +17,57 @@ import org.hibernate.Transaction;
  * @author default
  */
 public class UsuarioDAO extends AbstractDAO<Usuario> {
-    protected SessionFactory sessionFactory;
     
-    protected UsuarioDAO(){
-        this.sessionFactory = HibernateUtil.getSessionFactory();
+    /**
+     * 
+     */
+    public UsuarioDAO(){
+        super();
     }
     
-    protected void save(Usuario obj){
-        Session session = this.sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            session.save(obj);
-            tx.commit();
-       }catch(HibernateException e){
-          if(tx != null){
-              tx.rollback();
-          }
-          e.printStackTrace();
-       }finally{
-          session.close();
-        }
+    /**
+     * 
+     * @param usuario 
+     */
+    @Override
+    public void save(Usuario usuario){
+        super.save(usuario);
     }
     
-    protected void update(Usuario obj){
-        Session session = this.sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            session.update(obj);
-            tx.commit();
-       }catch(HibernateException e){
-          if(tx != null){
-              tx.rollback();
-          }
-          e.printStackTrace();
-       }finally{
-          session.close();
-        }
-        
+    /**
+     * 
+     * @param usuario 
+     */
+    @Override
+    public  void update(Usuario usuario){
+        super.update(usuario);
     }
     
-    protected void delete(Usuario obj){
-        Session session = this.sessionFactory.openSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            session.delete(obj);
-            tx.commit();
-       }catch(HibernateException e){
-          if(tx != null){
-              tx.rollback();
-          }
-          e.printStackTrace();
-       }finally{
-          session.close();
-        }
+    /**
+     * 
+     * @param usuario 
+     */
+    @Override
+    public void delete(Usuario usuario){
+        super.delete(usuario);
     }
     
-    protected Usuario find(Class clazz, int id){
-        Usuario obj = null;
-        Session session = this.sessionFactory.getCurrentSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            obj = (Usuario)session.get(clazz, id);
-            tx.commit();
-        }catch(HibernateException e){
-            if(tx != null){
-                tx.rollback();
-            }     
-        }finally{
-            session.close();
-        }
-        return obj;
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    public Usuario find(int id){
+        return super.find(Usuario.class, id);
     }
     
+    /**
+     * 
+     * @return 
+     */
+    public List<Usuario> findAll(){
+        return super.findAll(Usuario.class);
     
-    protected List<Usuario> findAll(Class clazz){
-        List<Usuario> obj = null;
-        Session session = this.sessionFactory.getCurrentSession();
-        Transaction tx = null;
-        try{
-            tx = session.beginTransaction();
-            String hql = "From" + clazz;
-            Query query = session.createQuery(hql);
-            obj = (List<Usuario>)query.list();
-            tx.commit();
-        }catch(HibernateException e){
-            if(tx != null){
-                tx.rollback();
-            }     
-        }finally{
-            session.close();
-        }
-        return obj;
     }
     
     
