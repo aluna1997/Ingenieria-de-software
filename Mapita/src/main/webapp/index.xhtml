@@ -34,6 +34,18 @@
         </h:form>
         
         
+        <h:form id="busqueda_nombre">
+                    <p:inputText type="search " value="#{buscaPorNombre.nombre}"/>
+                    <p:commandButton action="#{buscaPorNombre.buscaPorNombre()}" value="BuscaPorNombre"/>
+        </h:form>
+        
+        
+        <h:form id="busqueda_correo">
+            <p:inputText type="search " value="#{buscaPorCorreo.correo}"/>
+            <p:commandButton action="#{buscaPorCorreo.buscaPorCorreo()}" value="BuscaPorCorreo"/>
+        </h:form>
+        
+        
         
     </h:body>
 </html>
