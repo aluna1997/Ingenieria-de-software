@@ -38,7 +38,7 @@ public class BuscaPorCorreo {
         if(correo.equals(""))
             return "";
         UsuarioDAO ubd = new UsuarioDAO();
-        resultado =  ubd.buscaPorNombre(correo);
+        resultado =  ubd.buscaPorCorreo(correo);
         return "resultado?faces-redirect=true";
     }
         

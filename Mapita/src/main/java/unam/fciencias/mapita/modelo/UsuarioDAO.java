@@ -9,7 +9,6 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -72,8 +71,6 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
     
     
     public List<Usuario> buscaPorNombre(String nombre){
-//        if(nombre.equals(""))
-//            return null;
         List<Usuario> usuarios =null;
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
@@ -97,18 +94,17 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
     
     
     
-    public List<Usuario> buscaPorCorreo(String correo){
-//        if(nombre.equals(""))
-//            return null;
-        List<Usuario> usuarios =null;
+    public Usuario buscaPorCorreo(String correo,String contrasenia){
+        Usuario usuario = null;
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
         try{
             tx = session.beginTransaction();
-            String hql = "From Usuario  u where u.correo like concat('%',:correo,'%')";
+            String hql = "From Usuario  u where u.correo = :correo and u.contrasenia = :contrasenia";
             Query query = session.createQuery(hql);
             query.setParameter("correo", correo);
-            usuarios = (List<Usuario>)query.list();
+            query.setParameter("contrasenia", contrasenia);
+            usuario = (Usuario) query.uniqueResult();
             tx.commit();
         }catch(HibernateException e){
             if(tx!=null){
@@ -118,7 +114,11 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
         }finally{
             session.close();
         }
-        return usuarios;
+        return usuario;
+    }
+
+    public List<Usuario> buscaPorCorreo(String correo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
