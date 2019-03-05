@@ -5,10 +5,12 @@
  */
 package unam.fciencias.mapita.controlador;
 
+import java.util.List;
 import unam.fciencias.mapita.modelo.Usuario;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import unam.fciencias.mapita.modelo.UsuarioDAO;
 
 /**
  *
@@ -37,13 +39,25 @@ public class ControladorSesion {
     }
     
     public String login(){
-        Usuario user = null;
+        List<Usuario> user = null;
+        UsuarioDAO usr = new UsuarioDAO();
+        user = usr.buscaPorCorreo(correo);
+        String resultado = "";
         FacesContext context = FacesContext.getCurrentInstance();
-        if(user !=null){
-            context.getExternalContext().getSessionMap().put("user", user);
-            return "perfil?faces-redirect=true";
+        if(user != null){
+            for(Usuario log : user){
+                if (log.getCorreo().equals(correo)){
+                    if(log.getContrasenia().equals(contrasesnia)){
+                        context.getExternalContext().getSessionMap().put("user",user);
+                        resultado = "/user/perfil?faces-redirect=true";
+                    }
+                }
+
+            }
+        
         }
-        return "";
+        
+        return resultado;
     }
     
     public String logout(){

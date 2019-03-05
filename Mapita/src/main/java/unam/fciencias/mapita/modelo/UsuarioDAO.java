@@ -95,4 +95,30 @@ public class UsuarioDAO extends AbstractDAO<Usuario> {
         return usuarios;
     }
     
+    
+    
+    public List<Usuario> buscaPorCorreo(String correo){
+//        if(nombre.equals(""))
+//            return null;
+        List<Usuario> usuarios =null;
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            String hql = "From Usuario  u where u.correo like concat('%',:correo,'%')";
+            Query query = session.createQuery(hql);
+            query.setParameter("correo", correo);
+            usuarios = (List<Usuario>)query.list();
+            tx.commit();
+        }catch(HibernateException e){
+            if(tx!=null){
+                tx.rollback();
+            }
+            e.printStackTrace();
+        }finally{
+            session.close();
+        }
+        return usuarios;
+    }
+    
 }

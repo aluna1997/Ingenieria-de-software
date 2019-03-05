@@ -45,7 +45,14 @@
             <p:commandButton action="#{buscaPorCorreo.buscaPorCorreo()}" value="BuscaPorCorreo"/>
         </h:form>
         
-        
+        <h2>
+            Iniciar Sesión
+        </h2>
+        <h:form>
+            <p:inputText id="correolog" value="#{controladorSesion.correo}" placeholder="Correo"/><br/>
+            <p:inputText id="contrasenialog" value="#{controladorSesion.contrasesnia}" placeholder="Contrasenia"/><br/>
+            <p:commandButton action="#{controladorSesion.login()}" value="Entrar" ajax="false"/>
+        </h:form>
         
     </h:body>
 </html>
