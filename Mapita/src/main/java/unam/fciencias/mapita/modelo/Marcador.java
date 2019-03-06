@@ -12,16 +12,18 @@ public class Marcador implements java.io.Serializable {
      private String descripcion;
      private double longitud;
      private double latutu;
+     private int idusuario;
 
     public Marcador() {
     }
 
-    public Marcador(int idmarcador, Usuario usuario, String descripcion, double longitud, double latitud) {
+    public Marcador(int idmarcador, Usuario usuario, String descripcion, double longitud, double latitud, int idusuario) {
        this.idmarcador = idmarcador;
        this.usuario = usuario;
        this.descripcion = descripcion;
        this.longitud = longitud;
        this.latutu = latitud;
+       this.idusuario = idusuario;
     }
    
     public int getIdmarcador() {
@@ -60,8 +62,16 @@ public class Marcador implements java.io.Serializable {
         this.latutu = latutu;
     }
 
+    public int getIdusuario() {
+        return this.idusuario;
+    }
+    
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
+    }
 
-
+    
+    
 
 }
 

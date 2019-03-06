@@ -11,7 +11,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
 /**
  *
  * @author default
@@ -58,7 +57,7 @@ public class MarcadorDAO extends AbstractDAO<Marcador>{
      * @return 
      */
     public Marcador find(int id){
-        return super.find(Marcador.class, id);
+       return super.find(Marcador.class, id);
     }
     
     /**

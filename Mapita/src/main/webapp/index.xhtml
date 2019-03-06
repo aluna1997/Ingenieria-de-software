@@ -21,7 +21,7 @@
         <h:form>
             <br/>
             <p:inputNumber id="idmarcador" value="#{eliminaMarcador.idmarcador}" placeholder="Id Marcador"/><br/>
-            <p:commandButton action="#{eliminarMarcador.eliminarMarcador()}" value="Borrar Marcador" ajax="false"/><br/>
+            <p:commandButton action="#{eliminaMarcador.eliminarMarcador()}" value="Borrar Marcador" ajax="false"/><br/>
         </h:form>
         
         <h:form>
@@ -53,6 +53,14 @@
             <p:inputText id="contrasenialog" value="#{controladorSesion.contrasesnia}" placeholder="Contrasenia"/><br/>
             <p:commandButton action="#{controladorSesion.login()}" value="Entrar" ajax="false"/>
         </h:form>
+        
+    <h:form>
+        <p:inputNumber id="actualiza_marcador_idusuario" value="#{actualizaMarcador.idusuario}" placeholder="Id usuario"/><br/>
+        <p:inputText id="actualiza_marcador_descripcion" value="#{actualizaMarcador.descripcion}" placeholder="Descripcion"/><br/>
+        <p:inputNumber id="actualiza_marcador_longitud" value="#{actualizaMarcador.longitud}" placeholder="Longitud"/><br/>
+        <p:inputNumber id="actualiza_marcador_latitud" value="#{actualizaMarcador.latitud}" placeholder="Latitud"/><br/>
+        <p:commandButton action="#{actualizaMarcador.actualizaMarcador()}" value="Actualizar marcador" ajax="false"/>
+    </h:form>
         
     </h:body>
 </html>
